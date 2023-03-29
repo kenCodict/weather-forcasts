@@ -1,8 +1,9 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import { RootState, AppDispatch } from "../store";
-import type { location } from "../Components/type";
+import type { location,forcastType } from "../Components/type";
 import axios from 'axios';
 import { fetchData } from "../Components/fetchData";
+
 
 
 export const fetchWeatherForcast = createAsyncThunk('geolocation/fetchWeatherForcast', async(loc:location) => {
@@ -12,7 +13,7 @@ export const fetchWeatherForcast = createAsyncThunk('geolocation/fetchWeatherFor
 })
 
 interface stateType {
-    weatherForcast:{},
+    weatherForcast:forcastType | {},
     Loading: 'idle' | 'pending' | 'succeeded' | 'failed'
     error: unknown
 }
@@ -32,7 +33,12 @@ const weatherSlice = createSlice({
     })
     builder.addCase(fetchWeatherForcast.fulfilled, (state, action) => {
         state.Loading = 'succeeded'
-        state.weatherForcast = action.payload
+        const data = action.payload
+        const forcastData = {
+            ...data.city,
+            list: data.list.slice(0,16)
+        }
+        state.weatherForcast = forcastData
     })
     builder.addCase(fetchWeatherForcast.rejected, (state, action) => {
         state.Loading = 'failed'

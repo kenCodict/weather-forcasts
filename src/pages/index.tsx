@@ -29,6 +29,7 @@ const dispatch = useAppDispatch()
   }
   const search = () => {
     if (selectedOption.length > 0) {
+      
       dispatch(fetchWeatherForcast(selectedOption as [number, number]))
     }
     setOptions([])
