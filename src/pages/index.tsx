@@ -13,6 +13,7 @@ import {fetchWeatherForcast} from '../features/weatherSlice'
 export default function Home():JSX.Element {
 const dispatch = useAppDispatch()
   const {term,options,selectedOption} = useAppSelector(state=> state.geolocation)
+  
 
   
 

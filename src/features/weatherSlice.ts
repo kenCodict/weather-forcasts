@@ -13,12 +13,12 @@ export const fetchWeatherForcast = createAsyncThunk('geolocation/fetchWeatherFor
 })
 
 interface stateType {
-    weatherForcast:forcastType | {},
+    weatherForcast:forcastType | null,
     Loading: 'idle' | 'pending' | 'succeeded' | 'failed'
     error: unknown
 }
 const initialState: stateType = {
-weatherForcast: {},
+weatherForcast:null,
 Loading: 'idle',
 error: {},
 }
@@ -26,7 +26,11 @@ error: {},
 const weatherSlice = createSlice({
   name: 'weather',
   initialState,
-  reducers: {},
+  reducers: {
+    setWeatherForcast: (state, action) => {
+        state.weatherForcast = action.payload
+    }
+  },
   extraReducers: (builder) => {
     builder.addCase(fetchWeatherForcast.pending, (state, action) => {
         state.Loading = 'pending'
@@ -47,7 +51,7 @@ const weatherSlice = createSlice({
   }
 });
 
-export const {} = weatherSlice.actions
+export const {setWeatherForcast} = weatherSlice.actions
 
 
 export default weatherSlice.reducer

@@ -30,7 +30,7 @@ export type mainPropsType = {
             main:string,
             icon:string,
             description:string
-        }]
+        }],
         wind: {
             speed: number,
             gust:number,
