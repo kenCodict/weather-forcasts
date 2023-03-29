@@ -7,7 +7,7 @@ import { fetchData } from "../Components/fetchData";
 
 
 export const fetchWeatherForcast = createAsyncThunk('geolocation/fetchWeatherForcast', async(loc:location) => {
-    const url = `http://api.openweathermap.org/data/2.5/forecast?lat=${loc[1]}&lon=${loc[0]}&units=metric&appid=${`903e962f7f696141c434bbb39a9620c6`}`
+    const url = `https://api.openweathermap.org/data/2.5/forecast?lat=${loc[1]}&lon=${loc[0]}&units=metric&appid=${`903e962f7f696141c434bbb39a9620c6`}`
     const data = await fetchData(url)
     return data
 })

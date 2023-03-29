@@ -5,7 +5,7 @@ import axios from 'axios';
 import { fetchData } from "../Components/fetchData";
 
 export const fetchGeolocation = createAsyncThunk('geolocation/fetchGeolocation', async(loc:string) => {
-    const url = `http://api.openweathermap.org/geo/1.0/direct?q=${loc}&limit=${5}&appid=${`903e962f7f696141c434bbb39a9620c6`}`
+    const url = `https://api.openweathermap.org/geo/1.0/direct?q=${loc}&limit=${5}&appid=${`903e962f7f696141c434bbb39a9620c6`}`
     const data = await fetchData(url)
     return data
 })
